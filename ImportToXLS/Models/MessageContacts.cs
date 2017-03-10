@@ -8,7 +8,7 @@ namespace MiniProject.Models
 {
     public class MessageContacts
     {
-        public MessageContacts()
+        public MessageContacts() 
         {
             MessageCollection = new List<MessageContacts>();
         }
