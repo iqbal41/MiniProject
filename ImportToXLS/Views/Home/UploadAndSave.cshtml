@@ -1,0 +1,39 @@
+﻿@model MiniProject.Models.MessageContacts
+
+@using (Html.BeginForm("UploadAndSave", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Message</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.MessageText, 10, 60, new { maxlength = 160, minlength = 20, @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.MessageText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit Message" class="btn btn-default" onclick="return confirm('Are you sure you want to save this message?');" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="alert alert-danger">
+    @Html.ValidationMessage("keyName")
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="green">
+        <p><strong>Success:</strong> @TempData["Success"].ToString()</p>
+    </div>
+}

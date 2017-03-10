@@ -1,0 +1,39 @@
+﻿@model MiniProject.Models.MessageContacts
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+    @Html.Partial("UploadAndSave")
+    <table class="table">
+        <tr>
+            <th width="60%">
+                Message Text
+            </th>
+            <th width="20%">
+                Send Date
+            </th>
+            <th width="20%">
+                Send Time
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.MessageCollection)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SendDate.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SendTime)
+                </td>
+            </tr>
+        }
+     </table>
+   
